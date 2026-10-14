@@ -1,0 +1,12 @@
+{
+  "name": "cardkart-2",
+  "main": "worker.js",
+  "compatibility_date": "2025-01-01",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "cardkart-db",
+      "database_id": "cd46d983-d44e-40e1-a4b7-8906603fb495"
+    }
+  ]
+}
