@@ -1,0 +1,35 @@
+CARDKART STUDIO - setup (about 30 minutes, once)
+=================================================
+What this is: one website that holds ALL your clients. Open yourdomain/admin, add a client, fill details,
+and their page + QR are created. Edit anything later and the page updates instantly. The card/QR link never changes.
+
+1. GITHUB
+   - New repository named cardkart. Upload everything from this folder (keep the "functions" folder as is). Commit.
+
+2. CLOUDFLARE PAGES  (dash.cloudflare.com, free)
+   - Workers & Pages > Create > Pages > Connect to Git > pick the repository.
+   - Framework: None. Build command: leave empty. Build output directory: /
+   - Save and Deploy.
+
+3. DATABASE  (still in Cloudflare)
+   - Storage & Databases > D1 SQL database > Create database > name: cardkart-db
+   - Open your Pages project > Settings > Bindings > Add > D1 database
+     Variable name: DB      Database: cardkart-db     (Production)
+
+4. PASSWORD
+   - Pages project > Settings > Variables and secrets > Add (type Secret), two of them:
+       ADMIN_PASSWORD   = a long password only you know (12+ characters)
+       SESSION_SECRET   = any long random text (30+ characters, never share)
+
+5. REDEPLOY
+   - Deployments > latest deployment > Retry deployment (needed so steps 3 and 4 take effect).
+
+6. OPEN yourproject.pages.dev/admin and log in. Tables are created automatically on first login.
+   - Settings: add your WhatsApp number and packages.
+   - New order: make a client called "demo" (your own demo card).
+
+7. DOMAIN: Pages project > Custom domains > add cardkart.online. Do this BEFORE writing real customer cards.
+   Open /admin from the new domain so QR codes carry the right address.
+
+NFC card link format:  https://yourdomain/clientname?s=n     QR link: https://yourdomain/clientname?s=q
+(the s=n / s=q part lets you see taps and scans separately)
